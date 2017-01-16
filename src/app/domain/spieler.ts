@@ -1,12 +1,12 @@
 export class Spieler {
 
-    id: number;
+    ID: number;
     isAdmin: boolean;
     FirstName: string;
     LastName: string;
     Nickname: string;
     Skills: number;
-    Photopath: string;
+    PhotoPath: string;
     Password: string;
     isMonday: boolean;
     isTuesday: boolean;
@@ -15,9 +15,9 @@ export class Spieler {
     isFriday: boolean;
     isSaturday: boolean;
 
-
+  /*
     constructor(id: number, isAdmin: boolean, FirstName: string, LastName: string, Nickname: string,
-                Skills: number, Photopath: string, Password: string, isMonday: boolean, isTuesday: boolean,
+                Skills: number, PhotoPath: string, Password: string, isMonday: boolean, isTuesday: boolean,
                 isWednesday: boolean, isThursday: boolean, isFriday: boolean, isSaturday: boolean)
     {
         this.id = id;
@@ -35,6 +35,7 @@ export class Spieler {
         this.isFriday = isFriday;
         this.isSaturday = isSaturday;
     }
+    */
 }
 
 export class AuthObj{
