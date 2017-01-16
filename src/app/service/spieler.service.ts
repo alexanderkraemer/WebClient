@@ -16,16 +16,21 @@ export class SpielerService {
 
   constructor(public http: Http) { }
 
-  getSpieler(id: number): Promise<Spieler> {
-    const url = `${this.spielerAPIUrl}/${id}`;
-    return this.http.get(url)
+  FindById(id: number): Promise<Spieler> {
+    const url = this.spielerAPIUrl + '/' + id;
+    const get= this.http.get(url);
+    return get
       .toPromise()
       .then(response => response.json() as Spieler)
       .catch(this.handleError);
   }
 
-  FindAll(){
+  FindAll(): Promise<Spieler[]>{
 
+    return this.http.get(this.spielerAPIUrl)
+      .toPromise()
+      .then(response => response.json() as Spieler[])
+      .catch(this.handleError);
   }
 
   DeleteById(id: number) {

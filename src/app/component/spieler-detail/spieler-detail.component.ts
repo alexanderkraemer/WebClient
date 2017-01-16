@@ -24,8 +24,13 @@ export class SpielerDetailComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.spielerService.getSpieler(+params['id']))
+      .switchMap((params: Params) => this.spielerService.FindById(+params['id']))
       .subscribe(s => this.spieler = s);
+  }
+
+
+  echo(obj: Object){
+    console.log((obj));
   }
 
   public spieler: Spieler;

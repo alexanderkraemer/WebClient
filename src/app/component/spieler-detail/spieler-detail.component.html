@@ -1,3 +1,44 @@
-<p>
-  {{ spieler.FirstName }}
-</p>
+<div *ngIf="spieler" class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="block form-horizontal">
+          <div class="block-title">
+            <h2>Profil: {{spieler.FirstName}} {{spieler.LastName}}</h2>
+          </div>
+          <div class="form-group">
+            <label for="FirstName" class="col-md-4 control-label">Firstname</label>
+            <div class="col-md-7">
+              <input type="text" id="FirstName" class="form-control input-sm input-sm" value="{{ spieler.FirstName }}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="LastName" class="col-md-4 control-label">Firstname</label>
+            <div class="col-md-7">
+              <input type="text" id="LastName" class="form-control input-sm input-sm" value="{{ spieler.LastName }}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Nickname" class="col-md-4 control-label">Nickname</label>
+            <div class="col-md-7">
+              <input type="text" id="Nickname" class="form-control input-sm input-sm" value="{{ spieler.Nickname }}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Skills" class="col-md-4 control-label">Skills</label>
+            <div class="col-md-7">
+              <input type="text" id="Skills" class="form-control input-sm input-sm" value="{{ spieler.Skills }}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="isAdmin" class="col-md-4 control-label">is Admin</label>
+            <div class="col-md-7">
+              <input id="isAdmin" type="checkbox" checked="{{ spieler.isAdmin }}" name="isAdmin" disabled>
+            </div>
+          </div>
+
+
+
+    </div>
+  </div>
+</div>

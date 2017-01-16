@@ -1,6 +1,8 @@
     import { Component, OnInit } from '@angular/core';
     import {Spieler} from "../../domain/spieler";
-    import {Router} from "@angular/router";
+    import {Router, Params} from "@angular/router";
+    import {SpielerService} from "../../service/spieler.service";
+
 
     @Component({
       selector: 'app-spieler',
@@ -10,15 +12,23 @@
 
     export class SpielerComponent implements OnInit {
 
-      constructor(private router: Router) {
+      constructor(
+        private router: Router,
+        private spielerService: SpielerService
+      ) {
 
       }
 
       onSelect(spieler: Spieler): void {
-        this.router.navigate(['/spieler', spieler.id]);
+        this.router.navigate(['/spieler', spieler.ID]);
       }
 
-      ngOnInit() {
+      FindAll() {
+        this.spielerService.FindAll().then(spieler => this.Spieler = spieler);
+      }
+
+      ngOnInit(): void {
+        this.FindAll();
       }
 
       Spieler: Spieler[] = PLAYER;
@@ -26,13 +36,13 @@
     }
 
     const PLAYER : Spieler[] = [
-      { id: 1,
+      { ID: 1,
         FirstName:"Alex",
         LastName: "Krämer",
         Nickname: "Alex",
         isAdmin: true,
         Skills: 1234,
-        Photopath: "",
+        PhotoPath: "",
         Password: "pass",
         isMonday: true,
         isTuesday: false,
