@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Input, ElementRef} from '@angular/core';
 import {Http, Headers} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
@@ -52,7 +52,6 @@ export class SpielerService {
     return this.http
       .post(this.spielerAPIUrl, JSON.stringify(spieler), { headers: this.headers })
       .toPromise()
-      .then(res => res.json().data)
       .catch(this.handleError);
   }
 

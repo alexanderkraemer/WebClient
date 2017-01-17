@@ -1,3 +1,38 @@
-<p>
-  match works!
-</p>
+<div class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="createMatch()">Create new Match</button>
+        </div>
+      </div>
+
+      <!--p-dataTable [value]="Spieler" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+        <header>List of Cars</header>
+        <p-column field="ID" header="Vin"></p-column>
+        <p-column field="FirstName" header="Year"></p-column>
+        <p-column field="LastName" header="Brand"></p-column>
+        <p-column field="Nickname" header="Color"></p-column>
+      </p-dataTable-->
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Team 1</th>
+          <th>Team 2</th>
+          <th>Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let match of Matches" (click)="onSelect(match)" class="pointer">
+          <td>{{ match.ID }}</td>
+          <td>{{ match.Team1Player1.Nickname }} - {{ match.Team1Player2.Nickname }}</td>
+          <td>{{ match.Team2Player1.Nickname }} - {{ match.Team2Player2.Nickname }}</td>
+          <td>{{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,24 @@ export class Spieler {
         this.isSaturday = isSaturday;
     }
     */
+
+  constructor()
+  {
+    this.ID = 0;
+    this.isAdmin = false;
+    this.FirstName = "";
+    this.LastName = "";
+    this.Nickname = "";
+    this.Skills = 1000;
+    this.PhotoPath = "";
+    this.Password = "";
+    this.isMonday = false;
+    this.isTuesday = false;
+    this.isWednesday = false;
+    this.isThursday = false;
+    this.isFriday = false;
+    this.isSaturday = false;
+  }
 }
 
 export class AuthObj{

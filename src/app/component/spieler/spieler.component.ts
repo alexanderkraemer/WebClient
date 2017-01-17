@@ -3,8 +3,8 @@
     import {Router, Params} from "@angular/router";
     import {SpielerService} from "../../service/spieler.service";
 
-
     @Component({
+      moduleId: module.id,
       selector: 'app-spieler',
       templateUrl: './spieler.component.html',
       styleUrls: ['./spieler.component.css']
@@ -29,6 +29,10 @@
 
       ngOnInit(): void {
         this.FindAll();
+      }
+
+      createPlayer(): void{
+        this.router.navigate(['/spieler/create']);
       }
 
       Spieler: Spieler[];

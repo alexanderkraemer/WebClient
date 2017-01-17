@@ -1,0 +1,90 @@
+<div *ngIf="spieler" class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="block form-horizontal">
+          <div class="block-title">
+            <h2>Edit Player</h2>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Photo</label>
+            <div class="col-md-7">
+              <img src="http://localhost:42382/api/players/image/{{ spieler.ID }}" class="image">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">change Photo</label>
+            <div class="col-md-7">
+              <input type="file" accept="image/*" (change)="onChange($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Firstname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.FirstName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Firstname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.FirstName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Lastname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.LastName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Nickname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.Nickname">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Skills</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.Skills" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">is Admin</label>
+            <div class="col-md-7">
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isAdmin"></label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Presence</label>
+            <div class="col-md-7">
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isMonday">Monday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isTuesday">Tuesday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isWednesday">Wednesday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isThursday">Thursday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isFriday">Friday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isSaturday">Saturday</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-7 offset-md-5">
+              <button class="btn btn-default" (click)="goBack()">go Back</button>
+              <button class="btn btn-default" (click)="save(spieler)">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

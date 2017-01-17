@@ -52,7 +52,7 @@ export class MatchService {
   }
 
   Update(match: Match): Promise<Match> {
-    const url = `${this.matchAPIUrl}/${match.id}`;
+    const url = `${this.matchAPIUrl}/${match.ID}`;
     return this.http
       .put(url, JSON.stringify(match), { headers: this.headers })
       .toPromise()

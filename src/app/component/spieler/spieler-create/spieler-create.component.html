@@ -1,0 +1,87 @@
+<div *ngIf="spieler" class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="block form-horizontal">
+          <div class="block-title">
+            <h2>Create Player</h2>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Firstname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()" [(ngModel)]="spieler.FirstName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Lastname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()" [(ngModel)]="spieler.LastName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Nickname</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()" [(ngModel)]="spieler.Nickname">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Password</label>
+            <div class="col-md-7">
+              <input type="password" class="form-control input-sm input-sm" (change)="checkPassword()" [(ngModel)]="spieler.Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Password confirm</label>
+            <div class="col-md-7">
+              <input type="password" class="form-control input-sm input-sm"  (change)="checkPassword()" [(ngModel)]="passwordConfirm">
+              <small>{{ passwordConfirmLabel }}</small>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Skills</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.Skills" disabled>
+              <small>Every Player starts with 1000 Skillpoints!</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">is Admin</label>
+            <div class="col-md-7">
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isAdmin"></label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Presence</label>
+            <div class="col-md-7">
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isMonday">Monday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isTuesday">Tuesday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isWednesday">Wednesday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isThursday">Thursday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isFriday">Friday</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" [(ngModel)]="spieler.isSaturday">Saturday</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-7 offset-md-5">
+              <button class="btn btn-default" (click)="cancel()">Cancel</button>
+              <button class="btn btn-default" [disabled]="!buttonEnabled" (click)="save(spieler)">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
