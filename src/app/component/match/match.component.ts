@@ -13,7 +13,8 @@ import {forEach} from "@angular/router/src/utils/collection";
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
-  Matches: PopulatedMatch[];
+  Matches: PopulatedMatch[] = [];
+  Spieler: Spieler[] = [];
 
   constructor(private router: Router,
               private matchService: MatchService,
@@ -21,14 +22,23 @@ export class MatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.FindAll();
+    this.spielerService.FindAll().then(s =>
+    {
+      this.Spieler = s
+      this.FindAll();
+    });
   }
 
   FindAll() {
-    var arr: PopulatedMatch[] = new Array();
-
     this.matchService.FindAll().then(ma => {
-      var requestSalvos: {a:any, b:any, c:any, d:any}[];
+
+    });
+  }
+
+  /*
+  FindAll() {
+    this.matchService.FindAll().then(ma => {
+      var requestSalvos: {a:any, b:any, c:any, d:any}[] = [];
       ma.forEach(va => {
         requestSalvos.push({
           a: this.spielerService.FindById(va.Team1Player1),
@@ -52,15 +62,15 @@ export class MatchComponent implements OnInit {
               m.Team2Player1 = y;
               requestSalvos[index].d.then(z => {
                 m.Team2Player2 = z;
-                arr.push(m);
+                this.Matches.push(m);
               });
             });
           });
         });
       });
     });
-    this.Matches = arr;
   }
+  */
 
 
   onSelect(match: Match): void {
