@@ -4,23 +4,22 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Spieler} from "../../domain/spieler";
 import {SpielerService} from "../../service/spieler.service";
-import { Router } from '@angular/router'
 
 import {Location} from '@angular/common';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-spieler-detail',
-  templateUrl: './spieler-detail.component.html',
-  styleUrls: ['./spieler-detail.component.css']
+  selector: 'app-spieler-edit',
+  templateUrl: './spieler-edit.component.html',
+  styleUrls: ['./spieler-edit.component.css']
 })
-export class SpielerDetailComponent implements OnInit{
+
+export class SpielerEditComponent implements OnInit{
 
   constructor(
     private spielerService: SpielerService,
     private route: ActivatedRoute,
-    private location: Location,
-    private router: Router
+    private location: Location
   ) { }
 
 
@@ -30,13 +29,20 @@ export class SpielerDetailComponent implements OnInit{
       .subscribe(s => this.spieler = s);
   }
 
+
   goBack(): void {
     this.location.back();
   }
 
-  goToEditForm(spieler: Spieler): void {
-    this.router.navigate(['/spieler', spieler.ID, 'edit']);
-    // this.location.go('/spieler/' + spieler.ID + '/edit');
+
+  save(spieler: Spieler): void {
+    this.spielerService.Update(spieler)
+      .then(() => this.goBack());
+  }
+
+  isMonday(i: boolean)
+  {
+    this.spieler.isMonday = i;
   }
 
   public spieler: Spieler;

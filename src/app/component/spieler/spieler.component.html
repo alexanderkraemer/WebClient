@@ -8,7 +8,7 @@
           <th>Nachname</th>
           <th>Nickname</th>
         </tr>
-        <tr *ngFor="let spiel of Spieler" (click)="onSelect(spiel)">
+        <tr *ngFor="let spiel of Spieler" (click)="onSelect(spiel)" class="pointer">
           <td>{{ spiel.ID }}</td>
           <td>{{ spiel.FirstName }}</td>
           <td>{{ spiel.LastName }}</td>

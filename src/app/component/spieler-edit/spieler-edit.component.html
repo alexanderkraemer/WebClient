@@ -9,53 +9,50 @@
           <div class="form-group">
             <label for="FirstName" class="col-md-4 control-label">Firstname</label>
             <div class="col-md-7">
-              <input type="text" id="FirstName" class="form-control input-sm input-sm" value="{{ spieler.FirstName }}" disabled>
+              <input type="text" id="FirstName" class="form-control input-sm input-sm" [(ngModel)]="spieler.FirstName">
             </div>
           </div>
           <div class="form-group">
             <label for="LastName" class="col-md-4 control-label">Lastname</label>
             <div class="col-md-7">
-              <input type="text" id="LastName" class="form-control input-sm input-sm" value="{{ spieler.LastName }}" disabled>
+              <input type="text" id="LastName" class="form-control input-sm input-sm" [(ngModel)]="spieler.LastName">
             </div>
           </div>
           <div class="form-group">
             <label for="Nickname" class="col-md-4 control-label">Nickname</label>
             <div class="col-md-7">
-              <input type="text" id="Nickname" class="form-control input-sm input-sm" value="{{ spieler.Nickname }}" disabled>
+              <input type="text" id="Nickname" class="form-control input-sm input-sm" [(ngModel)]="spieler.Nickname">
             </div>
           </div>
           <div class="form-group">
             <label for="Skills" class="col-md-4 control-label">Skills</label>
             <div class="col-md-7">
-              <input type="text" id="Skills" class="form-control input-sm input-sm" value="{{ spieler.Skills }}" disabled>
+              <input type="text" id="Skills" class="form-control input-sm input-sm" [(ngModel)]="spieler.Skills">
             </div>
           </div>
           <div class="form-group">
             <label for="isAdmin" class="col-md-4 control-label">is Admin</label>
             <div class="col-md-7">
-              <input id="isAdmin" type="checkbox" checked="{{ spieler.isAdmin }}" name="isAdmin" disabled>
+              <input id="isAdmin" type="checkbox" checked="{{ spieler.isAdmin }}" name="isAdmin">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Presence</label>
+            <label for="isAdmin" class="col-md-4 control-label">Presence</label>
             <div class="col-md-7">
-              <input type="checkbox" checked="{{ spieler.isMonday }}" disabled> Mo
-              <input type="checkbox" checked="{{ spieler.isTuesday }}" disabled> Tue
-              <input type="checkbox" checked="{{ spieler.isWednesday }}" disabled> Wed
-              <input type="checkbox" checked="{{ spieler.isThursday }}" disabled> Thu
-              <input type="checkbox" checked="{{ spieler.isFriday }}" disabled> Fr
-              <input type="checkbox" checked="{{ spieler.isSaturday }}" disabled> Sat
+              <input type="checkbox" [(ngModel)]="spieler.isMonday" (ngModelChange)="isMonday(i)" > Mo
+              <input id="isTuesday" type="checkbox" checked="{{ spieler.isTuesday }}" name="isTuesday"> Tue
+              <input id="isWednesday" type="checkbox" checked="{{ spieler.isWednesday }}" name="isWednesday"> Wed
+              <input id="isThursday" type="checkbox" checked="{{ spieler.isThursday }}" name="isThursday"> Thu
+              <input id="isFriday" type="checkbox" checked="{{ spieler.isFriday }}" name="isFriday"> Fr
+              <input id="isSaturday" type="checkbox" checked="{{ spieler.isSaturday }}" name="isSaturday"> Sat
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-7 offset-md-5">
               <button (click)="goBack()">go Back</button>
-              <button (click)="goToEditForm(spieler)">Edit</button>
+              <button (click)="save(spieler)">Save</button>
             </div>
           </div>
-
-
-
+        </div>
+      </div>
     </div>
-  </div>
-</div>

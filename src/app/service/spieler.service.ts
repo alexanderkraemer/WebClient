@@ -26,7 +26,6 @@ export class SpielerService {
   }
 
   FindAll(): Promise<Spieler[]>{
-
     return this.http.get(this.spielerAPIUrl)
       .toPromise()
       .then(response => response.json() as Spieler[])
@@ -34,19 +33,36 @@ export class SpielerService {
   }
 
   DeleteById(id: number) {
-
+    const url = `${this.spielerAPIUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers })
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
   DeleteAll(){
-
+    const url = this.spielerAPIUrl;
+    return this.http.delete(url, { headers: this.headers })
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
   Insert(spieler: Spieler){
-
+    return this.http
+      .post(this.spielerAPIUrl, JSON.stringify(spieler), { headers: this.headers })
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
   }
 
-  Update(spieler: Spieler){
-
+  Update(spieler: Spieler): Promise<Spieler> {
+    const url = `${this.spielerAPIUrl}/${spieler.ID}`;
+    return this.http
+      .put(url, JSON.stringify(spieler), { headers: this.headers })
+      .toPromise()
+      .then(() => spieler)
+      .catch(this.handleError);
   }
 
 

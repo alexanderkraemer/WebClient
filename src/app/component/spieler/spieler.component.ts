@@ -31,24 +31,6 @@
         this.FindAll();
       }
 
-      Spieler: Spieler[] = PLAYER;
+      Spieler: Spieler[];
 
     }
-
-    const PLAYER : Spieler[] = [
-      { ID: 1,
-        FirstName:"Alex",
-        LastName: "Krämer",
-        Nickname: "Alex",
-        isAdmin: true,
-        Skills: 1234,
-        PhotoPath: "",
-        Password: "pass",
-        isMonday: true,
-        isTuesday: false,
-        isWednesday: false,
-        isThursday: true,
-        isFriday: true,
-        isSaturday: true
-      }
-    ];
