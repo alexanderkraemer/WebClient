@@ -24,11 +24,15 @@ export class SpielerEditComponent implements OnInit{
     private location: Location
   ) { }
 
-
+  passwordCache : string;
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => this.spielerService.FindById(+params['id']))
-      .subscribe(s => this.spieler = s);
+      .subscribe(s => {
+        this.spieler = s;
+        this.passwordCache = this.spieler.Password;
+        this.enableSubmit();
+      });
   }
 
 
@@ -38,6 +42,7 @@ export class SpielerEditComponent implements OnInit{
 
 
   save(spieler: Spieler): void {
+    this.enableSubmit();
     this.spielerService.Update(spieler)
       .then(() => this.goBack());
   }
@@ -61,7 +66,45 @@ export class SpielerEditComponent implements OnInit{
     }
   }
 
+  checkPasswordFields():boolean{
+    if(this.spieler.Password == this.passwordConfirm){
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  }
+
+  enableSubmit()
+  {
+    if(this.spieler.FirstName
+      && this.spieler.LastName
+      && this.spieler.Nickname
+      && this.checkPasswordFields())
+    {
+      this.buttonEnabled = true;
+    }
+    else {
+      this.buttonEnabled = false;
+    }
+  }
+
+  checkPassword(){
+    if(this.spieler.Password == this.passwordConfirm){
+      this.passwordConfirmLabel = "Password matches!";
+    }
+    else{
+      this.passwordConfirmLabel = "Password does not match!";
+    }
+    this.enableSubmit();
+  }
+
   public spieler: Spieler;
+  passwordConfirm : string;
+  passwordConfirmLabel : string = "";
+  buttonEnabled : boolean = false;
+
   private file: File;
 
 }

@@ -20,12 +20,12 @@ export class TournierService {
       .catch(this.handleError);
   }
 
-  FindByDay(day: Date){
-    const url = this.tournierAPIUrl + '/day/' + day;
+  FindByDay(date: Date){
+    const url = this.tournierAPIUrl + '/day/' + date.toDateString();
     const get= this.http.get(url);
     return get
       .toPromise()
-      .then(response => response.json() as Tournier)
+      .then(response => response.json() as Tournier[])
       .catch(this.handleError);
   }
 
@@ -61,7 +61,7 @@ export class TournierService {
   }
 
   Update(tournier: Tournier){
-    const url = `${this.tournierAPIUrl}/${tournier.id}`;
+    const url = `${this.tournierAPIUrl}/${tournier.ID}`;
     return this.http
       .put(url, JSON.stringify(tournier), { headers: this.headers })
       .toPromise()

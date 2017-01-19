@@ -1,0 +1,42 @@
+<div *ngIf="tournament" class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Tournamentdetails
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <div class="block form-horizontal">
+              <div class="form-group">
+                <label class="col-md-4 control-label">ID</label>
+                <div class="col-md-7">
+                  <p class="form-control-static">{{ tournament.ID }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-7">
+                  <p class="form-control-static">{{ tournament.Timestamp | date:"dd.MM.yyyy" }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <div class="col-md-7">
+                  <p class="form-control-static">{{ tournament.Name }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <button class="btn btn-default" (click)="goBack()">go Back</button>
+                  <button class="btn btn-default" (click)="generateMatches()">generate Matches</button>
+                  <button class="btn btn-default" (click)="editTournier()">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

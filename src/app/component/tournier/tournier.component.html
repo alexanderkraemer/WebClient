@@ -1,3 +1,27 @@
-<p>
-  tournier works!
-</p>
+<div class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Tournament overview
+        </div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-2">Name</th>
+            <th class="col-md-2">Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let tournament of Tournaments" (click)="onSelect(tournament)" class="pointer">
+            <td>{{ tournament.ID }}</td>
+            <td>{{ tournament.Name }}</td>
+            <td>{{ tournament.Timestamp | date:"dd.MM.yyyy" }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

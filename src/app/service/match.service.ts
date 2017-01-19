@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Headers, Http} from "@angular/http";
 import {Match} from "../domain/match";
+import {Spieler} from "../domain/spieler";
 
 @Injectable()
 export class MatchService {
@@ -20,10 +21,17 @@ export class MatchService {
       .catch(this.handleError);
   }
 
-  FindAll(): Promise<Match[]>{
+  FindAllByPage(page: number, numberPerPage: number): Promise<MatchPaginateClass>{
+    return this.http.get(this.matchAPIUrl + '/page/' + page + '/' + numberPerPage)
+      .toPromise()
+      .then(response => response.json() as MatchPaginateClass)
+      .catch(this.handleError);
+  }
+
+  FindAll(): Promise<MatchPaginateClass>{
     return this.http.get(this.matchAPIUrl)
       .toPromise()
-      .then(response => response.json() as Match[])
+      .then(response => response.json() as MatchPaginateClass)
       .catch(this.handleError);
   }
 
@@ -51,6 +59,20 @@ export class MatchService {
       .catch(this.handleError);
   }
 
+  Generate(numberToGenerate: number, playerList: Spieler[], tournamentId:number){
+    let mg = new MatchGenerate();
+    mg.chosenPlayers = playerList;
+    mg.NumberOfMatches = numberToGenerate;
+    mg.tournamentId = tournamentId;
+
+    console.log(mg);
+    return this.http
+      .post(this.matchAPIUrl + '/generate', JSON.stringify(mg), { headers: this.headers })
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+
   Update(match: Match): Promise<Match> {
     const url = `${this.matchAPIUrl}/${match.ID}`;
     return this.http
@@ -65,4 +87,18 @@ export class MatchService {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);
   }
+}
+
+export class MatchPaginateClass
+{
+  public numberOfMatches: number;
+  public matchList: Match[];
+}
+
+
+class MatchGenerate
+{
+  public chosenPlayers: Spieler[];
+  public NumberOfMatches: number;
+  public tournamentId: number;
 }

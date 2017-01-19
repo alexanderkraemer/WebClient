@@ -1,3 +1,49 @@
-<p>
-  live works!
-</p>
+<div class="container theme-showcas">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th class="col-md-1">ID</th>
+          <th class="col-md-2">Tournament</th>
+          <th class="col-md-2">Team 1</th>
+          <th class="col-md-1"></th>
+          <th class="col-md-2">Team 2</th>
+          <th class="col-md-2">Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let match of PopulatedMatches" (click)="onSelect(match)" class="pointer">
+          <td>{{ match.ID }}</td>
+          <td>{{ match.Tournier.Name }}</td>
+          <td>
+            {{ match.Team1Player1.FirstName }} {{ match.Team1Player1.LastName }}
+            <br>
+            {{ match.Team1Player2.FirstName }} {{ match.Team1Player2.LastName }}
+          </td>
+          <td>:</td>
+          <td>
+            {{ match.Team2Player1.FirstName }} {{ match.Team2Player1.LastName }}
+            <br>
+            {{ match.Team2Player2.FirstName }} {{ match.Team2Player2.LastName }}
+          </td>
+          <td>
+            <div *ngIf="!match.ResultPointsPlayer1 || !match.ResultPointsPlayer2">
+              0 : 0
+            </div>
+            <div *ngIf="match.ResultPointsPlayer1 && match.ResultPointsPlayer2">
+              {{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}
+            </div>
+            <small *ngIf="!match.Finished">
+              Spiel noch nicht beendet!
+            </small>
+            <small *ngIf="match.Finished">
+              Spiel beendet!
+            </small>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,38 +1,66 @@
 <div class="container theme-showcas">
   <div class="row">
     <div class="col-md-12">
-      <div class="form-group">
-        <div class="col-md-12">
-          <button class="btn btn-primary" (click)="createMatch()">Create new Match</button>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Match Overview
         </div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-2">Tournament</th>
+            <th class="col-md-2">Team 1</th>
+            <th class="col-md-1"></th>
+            <th class="col-md-2">Team 2</th>
+            <th class="col-md-2">Result</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let match of PopulatedMatches" (click)="onSelect(match)" class="pointer">
+            <td>{{ match.ID }}</td>
+            <td>{{ match.Tournier.Name }}</td>
+            <td>
+              {{ match.Team1Player1.FirstName }} {{ match.Team1Player1.LastName }}
+              <br>
+              {{ match.Team1Player2.FirstName }} {{ match.Team1Player2.LastName }}
+            </td>
+            <td>:</td>
+            <td>
+              {{ match.Team2Player1.FirstName }} {{ match.Team2Player1.LastName }}
+              <br>
+              {{ match.Team2Player2.FirstName }} {{ match.Team2Player2.LastName }}
+            </td>
+            <td>
+              <div *ngIf="!match.ResultPointsPlayer1 || !match.ResultPointsPlayer2">
+                0 : 0
+              </div>
+              <div *ngIf="match.ResultPointsPlayer1 && match.ResultPointsPlayer2">
+                {{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}
+              </div>
+              <small *ngIf="!match.Finished">
+                Spiel noch nicht beendet!
+              </small>
+              <small *ngIf="match.Finished">
+                Spiel beendet!
+              </small>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
-      <!--p-dataTable [value]="Spieler" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
-        <header>List of Cars</header>
-        <p-column field="ID" header="Vin"></p-column>
-        <p-column field="FirstName" header="Year"></p-column>
-        <p-column field="LastName" header="Brand"></p-column>
-        <p-column field="Nickname" header="Color"></p-column>
-      </p-dataTable-->
+      <div class="col-md-8">
+        <ngb-pagination [collectionSize]="numberOfMatches"
+                        [(page)]="page"
+                        [maxSize]="7"
+                        [pageSize]="numberPerPage"
+                        [directionLinks]="true"
+                        (pageChange)="changedPage($event)"
+                        [rotate]="true"></ngb-pagination>
 
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Team 1</th>
-          <th>Team 2</th>
-          <th>Result</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let match of Matches" (click)="onSelect(match)" class="pointer">
-          <td>{{ match.ID }}</td>
-          <td>{{ match.Team1Player1.Nickname }} - {{ match.Team1Player2.Nickname }}</td>
-          <td>{{ match.Team2Player1.Nickname }} - {{ match.Team2Player2.Nickname }}</td>
-          <td>{{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}</td>
-        </tr>
-        </tbody>
-      </table>
+      </div>
+
     </div>
   </div>
 </div>

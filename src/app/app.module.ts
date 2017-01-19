@@ -27,6 +27,16 @@ import { MatchDetailComponent } from './component/match/match-detail/match-detai
 import { MatchCreateComponent } from './component/match/match-create/match-create.component';
 import { MatchEditComponent } from './component/match/match-edit/match-edit.component';
 
+
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TournierDetailComponent } from './component/tournier/tournier-detail/tournier-detail.component';
+import { MatchGenerateComponent } from './component/match/match-generate/match-generate.component';
+import { TournierEditComponent } from './component/tournier/tournier-edit/tournier-edit.component';
+
+
+// chart
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,13 +50,18 @@ import { MatchEditComponent } from './component/match/match-edit/match-edit.comp
     SpielerCreateComponent,
     MatchDetailComponent,
     MatchCreateComponent,
-    MatchEditComponent
+    MatchEditComponent,
+    TournierDetailComponent,
+    MatchGenerateComponent,
+    TournierEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
+
   ],
   providers: [
       SpielerService,

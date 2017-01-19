@@ -32,6 +32,15 @@ export class SpielerService {
       .catch(this.handleError);
   }
 
+  FindByDay(date: Date): Promise<Spieler[]>{
+    return this.http.get(this.spielerAPIUrl + '/byday/' + date.toDateString())
+      .toPromise()
+      .then(response => {
+        return response.json() as Spieler[];
+      })
+      .catch(this.handleError);
+  }
+
   DeleteById(id: number) {
     const url = `${this.spielerAPIUrl}/${id}`;
     return this.http.delete(url, { headers: this.headers })

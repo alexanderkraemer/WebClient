@@ -75,3 +75,8 @@ export class StatistikService {
   }
 }
 
+
+export class StatisticPlayerObj{
+  labels: Date[];
+  date: number[];
+}

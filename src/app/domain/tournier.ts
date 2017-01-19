@@ -1,9 +1,11 @@
 export class Tournier {
-    id: number;
+    ID: number;
     Name: string;
     Timestamp: Date;
 
+    /*
     constructor(id: number, Name: string, Timestamp: Date)
+
     {
         this.id = id;
         this.Name = Name;
@@ -15,4 +17,5 @@ export class Tournier {
         this.Name = Name;
         this.Timestamp = Timestamp;
     }
+    */
 }
