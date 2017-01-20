@@ -17,7 +17,7 @@ export class SpielerService {
   private headers = new Headers(
     {
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   constructor(
     public http: Http,
@@ -29,7 +29,7 @@ export class SpielerService {
   {
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   }
 
@@ -47,7 +47,7 @@ export class SpielerService {
   FindAll(): Promise<Spieler[]>{
     this.makeHeader();
     let options = new RequestOptions({ headers: this.headers });
-    return this.http.get(this.spielerAPIUrl, options)
+    return this.http.get(this.spielerAPIUrl + '/ranks', options)
       .toPromise()
       .then(response => response.json() as Spieler[])
       .catch(this.handleError);

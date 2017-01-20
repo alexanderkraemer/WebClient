@@ -11,7 +11,7 @@ export class MatchService {
   private headers = new Headers(
     {
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   constructor(
     public http: Http,
@@ -23,7 +23,7 @@ export class MatchService {
   {
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   }
 
@@ -45,11 +45,11 @@ export class MatchService {
       .catch(this.handleError);
   }
 
-  FindAll(): Promise<MatchPaginateClass>{
+  FindAll(): Promise<Match[]>{
     this.makeHeader();
     return this.http.get(this.matchAPIUrl, { headers: this.headers })
       .toPromise()
-      .then(response => response.json() as MatchPaginateClass)
+      .then(response => response.json() as Match[])
       .catch(this.handleError);
   }
 

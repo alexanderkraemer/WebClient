@@ -27,6 +27,13 @@ export class TournierEditComponent implements OnInit {
   save() {
     this.tournamentService.Update(this.tournament).then(() => {
       this.router.navigate(['tourniere/', this.tournament.ID]);
+    }).then(bool => {
+      if(bool)
+      {
+        console.log('is eh guad gonga');
+      } else {
+        console.log('is ned guad gonga');
+      }
     });
   }
 

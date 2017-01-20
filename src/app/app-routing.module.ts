@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
 
-  {path: 'live', component: LiveComponent, canActivate: [AuthGuard]},
+  {path: 'live', component: LiveComponent},
   {path: 'tourniere', component: TournierComponent, canActivate: [AuthGuard]},
   {path: 'tourniere/:id', component: TournierDetailComponent, canActivate: [AuthGuard]},
   {path: 'tourniere/:id/edit', component: TournierEditComponent, canActivate: [AuthGuard]},

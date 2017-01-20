@@ -17,7 +17,7 @@
         <li routerLinkActive="active"><a [routerLink]="['/dashboard']">Dashboard</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/spieler']" *ngIf="loggedInPlayer">Spieler</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/matches']" *ngIf="loggedInPlayer">Matches</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/live']" *ngIf="loggedInPlayer">Live Spiele</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/live']">Live Spiele</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/tourniere']" *ngIf="loggedInPlayer">Tourniere</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

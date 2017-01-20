@@ -10,7 +10,7 @@ export class TournierService {
   private headers = new Headers(
     {
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   constructor(
     public http: Http,
@@ -22,7 +22,7 @@ export class TournierService {
   {
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   }
 
@@ -81,7 +81,7 @@ export class TournierService {
       .catch(this.handleError);
   }
 
-  Update(tournier: Tournier){
+  Update(tournier: Tournier): Promise<boolean>{
     this.makeHeader();
     const url = `${this.tournierAPIUrl}/${tournier.ID}`;
     return this.http

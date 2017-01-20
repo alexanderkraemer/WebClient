@@ -16,9 +16,9 @@ export class AppComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.authenticationService.token.subscribe( value => {
+    this.authenticationService.currentUser.subscribe( value => {
       if(value) {
-        this.loggedInPlayer = value.Player;
+        this.loggedInPlayer = value;
       }
       else {
         this.loggedInPlayer = null;

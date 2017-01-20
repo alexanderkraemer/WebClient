@@ -10,7 +10,7 @@ export class StatistikService {
   private headers = new Headers(
     {
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   constructor(
     public http: Http,
@@ -22,7 +22,7 @@ export class StatistikService {
   {
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+      'Authorization': this.authenticationService.token.getValue()
     });
   }
 

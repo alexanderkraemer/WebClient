@@ -6,14 +6,14 @@ import {Spieler} from "../domain/spieler";
 
 @Injectable()
 export class AuthenticationService {
-  public token: BehaviorSubject<ResponseObject> = new BehaviorSubject<ResponseObject>(null);
+  public token: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  public currentUser: BehaviorSubject<Spieler> = new BehaviorSubject<Spieler>(null);
+
   private spielerAPIUrl = 'http://localhost:42382/api/players';
   private headers = new Headers({ 'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
-    // set token if saved in local storage
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token.next(currentUser);
+
   }
 
   login(nickname: string, password: string): Observable<boolean> {
@@ -21,18 +21,20 @@ export class AuthenticationService {
 
     return this.http.post(this.spielerAPIUrl + '/auth', body,  { headers: this.headers })
       .map((response: Response) => {
-      console.log("response: ", response.json() as ResponseObject);
-
-        // login successful if there's a jwt token in the response
-
+        // login successful if there's a jwt token in the respons
         let responseObj = response.json();
 
         if (responseObj) {
           // set token property
-          this.token.next(responseObj);
+          this.token.next(responseObj.Token);
+          this.currentUser.next(responseObj.Player);
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(responseObj));
+          localStorage.setItem('currentUser', JSON.stringify(responseObj.Player));
+          console.log("player: ", responseObj.Player)
+
+          console.log("token: ", responseObj.Token);
+          localStorage.setItem('token', responseObj.Token);
 
           // return true to indicate successful login
           return true;
@@ -45,8 +47,10 @@ export class AuthenticationService {
 
   logout(): void {
     this.token.next(null);
+    this.currentUser.next(null);
     // clear token remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 }
 
