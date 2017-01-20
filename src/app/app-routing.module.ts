@@ -14,30 +14,35 @@ import {MatchEditComponent} from "./component/match/match-edit/match-edit.compon
 import {TournierDetailComponent} from "./component/tournier/tournier-detail/tournier-detail.component";
 import {MatchGenerateComponent} from "./component/match/match-generate/match-generate.component";
 import {TournierEditComponent} from "./component/tournier/tournier-edit/tournier-edit.component";
+import {LoginComponent} from "./component/login/login.component";
+import {AuthGuard} from "./guard/auth.guard";
 
 const routes: Routes = [
+
+  {path: 'login', component: LoginComponent},
+
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
 
-  {path: 'spieler', component: SpielerComponent},
-  {path: 'spieler/create', component: SpielerCreateComponent},
-  {path: 'spieler/:id', component: SpielerDetailComponent},
-  {path: 'spieler/:id/edit', component: SpielerEditComponent},
+  {path: 'spieler', component: SpielerComponent, canActivate: [AuthGuard]},
+  {path: 'spieler/create', component: SpielerCreateComponent, canActivate: [AuthGuard]},
+  {path: 'spieler/:id', component: SpielerDetailComponent, canActivate: [AuthGuard]},
+  {path: 'spieler/:id/edit', component: SpielerEditComponent, canActivate: [AuthGuard]},
 
-  {path: 'matches', component: MatchComponent},
-  {path: 'matches/create', component: MatchCreateComponent},
-  {path: 'matches/:id', component: MatchDetailComponent},
-  {path: 'matches/:id/edit', component: MatchEditComponent},
-  {path: 'matches/page/:page', component: MatchComponent},
-  {path: 'matches/generate/:id', component: MatchGenerateComponent},
+  {path: 'matches', component: MatchComponent, canActivate: [AuthGuard]},
+  {path: 'matches/create', component: MatchCreateComponent, canActivate: [AuthGuard]},
+  {path: 'matches/:id', component: MatchDetailComponent, canActivate: [AuthGuard]},
+  {path: 'matches/:id/edit', component: MatchEditComponent, canActivate: [AuthGuard]},
+  {path: 'matches/page/:page', component: MatchComponent, canActivate: [AuthGuard]},
+  {path: 'matches/generate/:id', component: MatchGenerateComponent, canActivate: [AuthGuard]},
+
+  {path: 'login', component: LoginComponent},
 
 
-
-
-  {path: 'live', component: LiveComponent},
-  {path: 'tourniere', component: TournierComponent},
-  {path: 'tourniere/:id', component: TournierDetailComponent},
-  {path: 'tourniere/:id/edit', component: TournierEditComponent},
+  {path: 'live', component: LiveComponent, canActivate: [AuthGuard]},
+  {path: 'tourniere', component: TournierComponent, canActivate: [AuthGuard]},
+  {path: 'tourniere/:id', component: TournierDetailComponent, canActivate: [AuthGuard]},
+  {path: 'tourniere/:id/edit', component: TournierEditComponent, canActivate: [AuthGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

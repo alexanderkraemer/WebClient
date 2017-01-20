@@ -57,11 +57,22 @@ export class Spieler {
 }
 
 export class AuthObj{
-    constructor(nickname: string, password: string){
-        this.nickname = nickname;
-        this.password = password;
-    }
+  constructor(nickname: string, password: string){
+    this.nickname = nickname;
+    this.password = password;
+  }
 
-    nickname: string;
-    password: string;
+  nickname: string;
+  password: string;
+}
+
+
+export class TokenObj{
+  constructor(nickname: string, token: string){
+    this.nickname = nickname;
+    this.token = token;
+  }
+
+  nickname: string;
+  token: string;
 }

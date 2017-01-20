@@ -19,33 +19,46 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Firstname</label>
+            <label class="col-md-4 control-label">Firstname *</label>
             <div class="col-md-7">
-              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.FirstName">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()"
+                     [(ngModel)]="spieler.FirstName">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Firstname</label>
+            <label class="col-md-4 control-label">Lastname *</label>
             <div class="col-md-7">
-              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.FirstName">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()"
+                     [(ngModel)]="spieler.LastName">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Lastname</label>
+            <label class="col-md-4 control-label">Nickname *</label>
             <div class="col-md-7">
-              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.LastName">
+              <input type="text" class="form-control input-sm input-sm" (change)="enableSubmit()"
+                     [(ngModel)]="spieler.Nickname">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Nickname</label>
+            <label class="col-md-4 control-label">Password *</label>
             <div class="col-md-7">
-              <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.Nickname">
+              <input type="password" class="form-control input-sm input-sm" (change)="checkPassword()"
+                     [(ngModel)]="spieler.Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Password confirm *</label>
+            <div class="col-md-7">
+              <input type="password" class="form-control input-sm input-sm" (change)="checkPassword()"
+                     [(ngModel)]="passwordConfirm">
+              <small>{{ passwordConfirmLabel }}</small>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-4 control-label">Skills</label>
             <div class="col-md-7">
               <input type="text" class="form-control input-sm input-sm" [(ngModel)]="spieler.Skills" disabled>
+              <small>Every Player starts with 1000 Skillpoints!</small>
             </div>
           </div>
           <div class="form-group">
@@ -81,10 +94,13 @@
           </div>
           <div class="form-group">
             <div class="col-md-7 offset-md-5">
-              <button class="btn btn-default" (click)="goBack()">go Back</button>
-              <button class="btn btn-default" (click)="save(spieler)">Save</button>
+              <button class="btn btn-default" (click)="cancel()">Cancel</button>
+              <button class="btn btn-default" [disabled]="!buttonEnabled" (click)="save(spieler)">Save</button>
+              <br>
+              <small *ngIf="!buttonEnabled">All Fields marked with * are required!</small>
             </div>
           </div>
         </div>
       </div>
     </div>
+

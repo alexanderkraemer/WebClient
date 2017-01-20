@@ -33,6 +33,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TournierDetailComponent } from './component/tournier/tournier-detail/tournier-detail.component';
 import { MatchGenerateComponent } from './component/match/match-generate/match-generate.component';
 import { TournierEditComponent } from './component/tournier/tournier-edit/tournier-edit.component';
+import { LoginComponent } from './component/login/login.component';
+import {AuthGuard} from "./guard/auth.guard";
+import {AuthenticationService} from "./service/authentication.service";
 
 
 // chart
@@ -53,7 +56,8 @@ import { TournierEditComponent } from './component/tournier/tournier-edit/tourni
     MatchEditComponent,
     TournierDetailComponent,
     MatchGenerateComponent,
-    TournierEditComponent
+    TournierEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ import { TournierEditComponent } from './component/tournier/tournier-edit/tourni
       MatchService,
       TournierService,
       StatistikService,
-      UploadService
+      UploadService,
+      AuthGuard,
+      AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

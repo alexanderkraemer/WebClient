@@ -30,6 +30,11 @@ export class TournierEditComponent implements OnInit {
     });
   }
 
+  goBack()
+  {
+    this.router.navigate(['tourniere/', this.tournament.ID]);
+  }
+
   tournament: Tournier;
 
 }

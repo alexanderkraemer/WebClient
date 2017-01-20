@@ -43,23 +43,29 @@ export class SpielerEditComponent implements OnInit{
 
   save(spieler: Spieler): void {
     this.enableSubmit();
+    this.uploadfile(this.file);
     this.spielerService.Update(spieler)
       .then(() => this.goBack());
+
   }
 
   onChange(event) {
-    var file = event.srcElement.files[0];
+
+
+    let file = event.srcElement.files[0];
+
+    let reader = new FileReader();
+    reader.onloadend = (e) => {
+      this.spieler.PhotoPath = reader.result;
+      console.log(this.spieler.PhotoPath);
+    };
     this.file = file;
-    this.spieler.PhotoPath = this.file.name;
-    this.uploadfile(file);
   }
 
   uploadfile(file: any): void {
-    let fi = file.nativeElement;
-    if (fi.files && fi.files[0]) {
-      let fileToUpload = fi.files[0];
+    if (file) {
       this.uploadService
-        .upload(fileToUpload, this.spieler.Nickname)
+        .upload(file, this.spieler.Nickname)
         .subscribe(res => {
           console.log(res);
         });
