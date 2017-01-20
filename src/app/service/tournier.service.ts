@@ -1,19 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Tournier } from '../domain/tournier';
 import {Headers, Http} from "@angular/http";
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable()
 export class TournierService {
 
   private tournierAPIUrl = 'http://localhost:42382/api/tournaments';
-  private headers = new Headers({ 'Content-Type': 'application/json'});
+  private headers = new Headers(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+    });
+  constructor(
+    public http: Http,
+    private authenticationService: AuthenticationService
+  ) {
+  }
 
-
-  constructor(public http: Http) { }
+  private makeHeader()
+  {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': JSON.stringify(this.authenticationService.token.getValue().Token)
+    });
+  }
 
   FindById(id: number) {
     const url = this.tournierAPIUrl + '/' + id;
-    const get= this.http.get(url);
+    this.makeHeader();
+    const get= this.http.get(url, { headers: this.headers });
     return get
       .toPromise()
       .then(response => response.json() as Tournier)
@@ -22,7 +38,8 @@ export class TournierService {
 
   FindByDay(date: Date){
     const url = this.tournierAPIUrl + '/day/' + date.toDateString();
-    const get= this.http.get(url);
+    this.makeHeader();
+    const get= this.http.get(url, { headers: this.headers });
     return get
       .toPromise()
       .then(response => response.json() as Tournier[])
@@ -30,13 +47,15 @@ export class TournierService {
   }
 
   FindAll(){
-    return this.http.get(this.tournierAPIUrl)
+    this.makeHeader();
+    return this.http.get(this.tournierAPIUrl, { headers: this.headers })
       .toPromise()
       .then(response => response.json() as Tournier[])
       .catch(this.handleError);
   }
 
   DeleteById(id: number) {
+    this.makeHeader();
     const url = `${this.tournierAPIUrl}/${id}`;
     return this.http.delete(url, { headers: this.headers })
       .toPromise()
@@ -45,6 +64,7 @@ export class TournierService {
   }
 
   DeleteAll(){
+    this.makeHeader();
     const url = this.tournierAPIUrl;
     return this.http.delete(url, { headers: this.headers })
       .toPromise()
@@ -53,6 +73,7 @@ export class TournierService {
   }
 
   Insert(tournier: Tournier){
+    this.makeHeader();
     return this.http
       .post(this.tournierAPIUrl, JSON.stringify(tournier), { headers: this.headers })
       .toPromise()
@@ -61,6 +82,7 @@ export class TournierService {
   }
 
   Update(tournier: Tournier){
+    this.makeHeader();
     const url = `${this.tournierAPIUrl}/${tournier.ID}`;
     return this.http
       .put(url, JSON.stringify(tournier), { headers: this.headers })

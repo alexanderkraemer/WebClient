@@ -38,6 +38,9 @@ import {AuthGuard} from "./guard/auth.guard";
 import {AuthenticationService} from "./service/authentication.service";
 
 
+import { ChartModule } from 'angular2-highcharts';
+
+
 // chart
 
 @NgModule({
@@ -65,6 +68,7 @@ import {AuthenticationService} from "./service/authentication.service";
     HttpModule,
     AppRoutingModule,
     NgbModule.forRoot(),
+    ChartModule
 
   ],
   providers: [
