@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let match of PopulatedMatches" (click)="onSelect(match)" class="pointer">
+        <tr *ngFor="let match of PopulatedMatches" class="pointer">
           <td>{{ match.ID }}</td>
           <td>{{ match.Tournier.Name }}</td>
           <td>
@@ -32,7 +32,21 @@
               0 : 0
             </div>
             <div *ngIf="match.ResultPointsPlayer1 && match.ResultPointsPlayer2">
+              <a class="btn btn-primary" *ngIf="loggedInPlayer != null
+              && !match.Finished
+              && (loggedInPlayer.ID == match.Team1Player1
+              || loggedInPlayer.ID == match.Team1Player2
+              || loggedInPlayer.ID == match.Team2Player1
+              || loggedInPlayer.ID == match.Team2Player2)
+              " (click)="t1Inc(match)">+</a>
               {{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}
+              <a class="btn btn-primary" *ngIf="loggedInPlayer != null
+              && !match.Finished
+              && (loggedInPlayer.ID == match.Team1Player1
+              || loggedInPlayer.ID == match.Team1Player2
+              || loggedInPlayer.ID == match.Team2Player1
+              || loggedInPlayer.ID == match.Team2Player2)
+              " (click)="t2Inc(match)">+</a>
             </div>
             <small *ngIf="!match.Finished">
               Spiel noch nicht beendet!

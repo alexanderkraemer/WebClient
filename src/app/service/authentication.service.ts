@@ -13,7 +13,8 @@ export class AuthenticationService {
   private headers = new Headers({ 'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
-
+    var pl = localStorage.getItem('currentUser');
+    this.currentUser = new BehaviorSubject<Spieler>(JSON.parse(pl));
   }
 
   login(nickname: string, password: string): Observable<boolean> {
@@ -24,7 +25,10 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the respons
         let responseObj = response.json();
 
-        if (responseObj) {
+        if (!responseObj.Player || !responseObj.Token) {
+          return false;
+        }
+        else {
           // set token property
           this.token.next(responseObj.Token);
           this.currentUser.next(responseObj.Player);
@@ -38,9 +42,6 @@ export class AuthenticationService {
 
           // return true to indicate successful login
           return true;
-        } else {
-          // return false to indicate failed login
-          return false;
         }
       });
   }

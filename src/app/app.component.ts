@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
       else {
         this.loggedInPlayer = null;
       }
-    })
+    });
   }
 
   signIn(){
