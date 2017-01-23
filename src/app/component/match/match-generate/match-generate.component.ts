@@ -6,6 +6,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Spieler} from "../../../domain/spieler";
 import {Tournier} from "../../../domain/tournier";
 import {Match} from "../../../domain/match";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-match-generate',
@@ -19,7 +20,8 @@ export class MatchGenerateComponent implements OnInit {
     private tournamentService: TournierService,
     private matchService: MatchService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -30,18 +32,26 @@ export class MatchGenerateComponent implements OnInit {
     .subscribe(t => {
       this.tournament = t;
 
-
       serviceArr = ({
         b: this.playerService.FindAll(),
         c: this.matchService.FindAll(),
       });
 
+      var indexArr = [];
+
       this.playerService.FindByDay(new Date()).then(d => {
         this.playerForDay = d;
+
+
         serviceArr.b.then(p => {
+          d.forEach(ps => {
+            indexArr.push(ps.ID);
+            //if(!this.contains(this.playerForDay, ps)
+          });
+          console.log(indexArr);
           p.forEach(ps => {
-            if(!this.contains(this.playerForDay, ps))
-            {
+
+            if(indexArr.indexOf(ps.ID) === -1){
               this.players.push(ps);
             }
           });
@@ -79,9 +89,14 @@ export class MatchGenerateComponent implements OnInit {
 
   contains(arr, needle) {
     // Per spec, the way to identify NaN is that it is not equal to itself
-    var findNaN = needle !== needle;
-    var indexOf;
-
+    arr.forEach(p => {
+      if(needle.ID == p.ID)
+      {
+        return true;
+      }
+    });
+    return false;
+    /*
     if(!findNaN && typeof Array.prototype.indexOf === 'function') {
       indexOf = Array.prototype.indexOf;
     } else {
@@ -101,10 +116,12 @@ export class MatchGenerateComponent implements OnInit {
       };
     }
     return indexOf.call(this, needle) > -1;
+    */
   }
 
   generate(){
-    this.matchService.Generate(this.numberToGenerate, this.playerForDay, this.tournament.ID);
+    this.matchService.Generate(this.numberToGenerate, this.playerForDay, this.tournament.ID)
+      .then(() => this.router.navigate(['matches']));
   }
 
   numberToGenerate: number = 0;

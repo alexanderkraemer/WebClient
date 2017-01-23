@@ -29,24 +29,14 @@
           </td>
           <td>
             <div *ngIf="!match.ResultPointsPlayer1 || !match.ResultPointsPlayer2">
+              <a class="btn btn-primary" *ngIf="loggedInPlayer" (click)="t1Inc(match)">+</a>
               0 : 0
+              <a class="btn btn-primary" *ngIf="loggedInPlayer" (click)="t2Inc(match)">+</a>
             </div>
             <div *ngIf="match.ResultPointsPlayer1 && match.ResultPointsPlayer2">
-              <a class="btn btn-primary" *ngIf="loggedInPlayer != null
-              && !match.Finished
-              && (loggedInPlayer.ID == match.Team1Player1
-              || loggedInPlayer.ID == match.Team1Player2
-              || loggedInPlayer.ID == match.Team2Player1
-              || loggedInPlayer.ID == match.Team2Player2)
-              " (click)="t1Inc(match)">+</a>
+              <a class="btn btn-primary" *ngIf="loggedInPlayer && !match.Finished" (click)="t1Inc(match)">+</a>
               {{ match.ResultPointsPlayer1 }} : {{ match.ResultPointsPlayer2 }}
-              <a class="btn btn-primary" *ngIf="loggedInPlayer != null
-              && !match.Finished
-              && (loggedInPlayer.ID == match.Team1Player1
-              || loggedInPlayer.ID == match.Team1Player2
-              || loggedInPlayer.ID == match.Team2Player1
-              || loggedInPlayer.ID == match.Team2Player2)
-              " (click)="t2Inc(match)">+</a>
+              <a class="btn btn-primary" *ngIf="loggedInPlayer && !match.Finished" (click)="t2Inc(match)">+</a>
             </div>
             <small *ngIf="!match.Finished">
               Spiel noch nicht beendet!

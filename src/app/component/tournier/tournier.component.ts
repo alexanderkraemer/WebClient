@@ -27,7 +27,10 @@ export class TournierComponent implements OnInit {
       })
     });
   }
-
+  createTournament()
+  {
+    this.router.navigate(['/tourniere/create']);
+  }
 
   onSelect(tournament: Tournier) {
     this.router.navigate(['/tourniere', tournament.ID]);

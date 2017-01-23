@@ -39,6 +39,7 @@ import {AuthenticationService} from "./service/authentication.service";
 
 
 import { ChartModule } from 'angular2-highcharts';
+import { TournierCreateComponent } from './component/tournier/tournier-create/tournier-create.component';
 
 
 // chart
@@ -60,7 +61,8 @@ import { ChartModule } from 'angular2-highcharts';
     TournierDetailComponent,
     MatchGenerateComponent,
     TournierEditComponent,
-    LoginComponent
+    LoginComponent,
+    TournierCreateComponent
   ],
   imports: [
     BrowserModule,

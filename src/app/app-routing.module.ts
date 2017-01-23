@@ -16,6 +16,7 @@ import {MatchGenerateComponent} from "./component/match/match-generate/match-gen
 import {TournierEditComponent} from "./component/tournier/tournier-edit/tournier-edit.component";
 import {LoginComponent} from "./component/login/login.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {TournierCreateComponent} from "./component/tournier/tournier-create/tournier-create.component";
 
 const routes: Routes = [
 
@@ -41,6 +42,7 @@ const routes: Routes = [
 
   {path: 'live', component: LiveComponent},
   {path: 'tourniere', component: TournierComponent, canActivate: [AuthGuard]},
+  {path: 'tourniere/create', component: TournierCreateComponent, canActivate: [AuthGuard]},
   {path: 'tourniere/:id', component: TournierDetailComponent, canActivate: [AuthGuard]},
   {path: 'tourniere/:id/edit', component: TournierEditComponent, canActivate: [AuthGuard]},
 ];
